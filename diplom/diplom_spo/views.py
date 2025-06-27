@@ -1,25 +1,36 @@
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Diplom
+from .forms import DiplomForm
 
 
 def index(request):
     return HttpResponse('Диплом ПОКАЖИ!!!!!')
 
 
-def diploma_list(request):
-    diploms = Diplom.objects.all()
-    return render(request, 'diplom_detail.html', {'diploms': diploms})
+def diplom_list(request):
+    diplomas = Diplom.objects.all()
+    return render(request, 'diplom/diplom_list.html', {'diplomas': diplomas})
 
 
-def diploma_edit(request, pk):
+def diplom_edit(request, pk):
     diplom = get_object_or_404(Diplom, pk=pk)
     if request.method == 'POST':
-        diplom.student_name = request.POST.get('student_name')
-        diplom.title = request.POST.get('title')
-        diplom.supervisor = request.POST.get('supervisor')
-        diplom.year = int(request.POST.get('year'))
-        diplom.description = request.POST.get('description')
-        diplom.save()
-        return redirect('diploma_list')
-    return render(request, 'diplom_edit.html', {'diplom': diplom})
+        form = DiplomForm(request.POST, instance=diplom)
+        if form.is_valid():
+            form.save()
+            return redirect('diplom_list')
+    else:
+        form = DiplomForm(instance=diplom)
+    return render(request, 'diplom_spo/diplom_form.html', {'form': form})
+
+
+def diplom_create(request):
+    if request.method == 'POST':
+        form = DiplomForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('diplom_list')
+    else:
+        form = DiplomForm()
+    return render(request, 'diplom_spo/diplom_form.html', {'form': form})

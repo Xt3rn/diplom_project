@@ -1,9 +1,10 @@
 from django.urls import path
-from diplom_spo import views
+from . import views
 
 app_name = 'diplom_spo'
 
 urlpatterns = [
-    path('diplom_detail', views.diploma_list, name='diplom_detail'),
-    path('edit/<int:pk>/', views.diploma_edit, name='diploma_edit'),
+    path('', views.diplom_list, name='diplom_list'),
+    path('edit/<int:pk>/', views.diplom_edit, name='diplom_edit'),
+    path('add/', views.diplom_create, name='diplom_create'),
 ]

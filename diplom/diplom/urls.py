@@ -17,7 +17,9 @@ from django.contrib import admin
 from django.urls import path, include
 from diplom_spo import views
 
+
 urlpatterns = [
-    path('', views.index, name='index'),
     path('admin/', admin.site.urls),
+    path('', views.index,),
+    path('diplom_spo/', include('diplom_spo.urls', namespace='diplom_spo'))
 ]
