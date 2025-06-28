@@ -10,8 +10,8 @@ def index(request):
 
 
 def diplom_list(request):
-    diplomas = Diplom.objects.all()
-    return render(request, 'diplom/diplom_list.html', {'diplomas': diplomas})
+    diploms = Diplom.objects.all()
+    return render(request, 'diplom/diplom_list.html', {'diploms': diploms})
 
 
 def diplom_edit(request, pk):

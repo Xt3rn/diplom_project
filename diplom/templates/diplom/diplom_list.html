@@ -21,15 +21,15 @@
             </tr>
         </thead>
         <tbody>
-            {% if diplom_spo %}
-                {% for diploma in diplom_spo %}
+            {% if diploms %}
+                {% for diplom in diploms %}
                     <tr>
-                        <td>{{ diploma.org_name }}</td>
-                        <td>{{ diploma.speciality }}</td>
-                        <td>{{ diploma.year }}</td>
+                        <td>{{ diplom.org_name }}</td>
+                        <td>{{ diplom.speciality }}</td>
+                        <td>{{ diplom.year }}</td>
                         <td>
                             <!-- Ссылка на редактирование -->
-                            <a href="{% url 'diplom_spo:diplom_edit' diploma.pk %}">Редактировать</a>
+                            <a href="{% url 'diplom:diplom_edit' diplom.pk %}">Редактировать</a>
                         </td>
                     </tr>
                 {% endfor %}
