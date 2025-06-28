@@ -6,7 +6,7 @@
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Сохранить</button>
-        <a href="{% url 'diplom_spo/diploma_list' %}">Отмена</a>
+        <a href="{% url 'diplom:index' %}">Отмена</a>
         </form>
     </body>
 {% endblock %}
