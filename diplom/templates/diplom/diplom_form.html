@@ -5,8 +5,11 @@
         <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Сохранить</button>
+        <a href="{% url 'diplom:index' %}">
+            <button type="submit">Сохранить</button>
+        <a/>
         <a href="{% url 'diplom:index' %}">Отмена</a>
         </form>
     </body>
 {% endblock %}
+
